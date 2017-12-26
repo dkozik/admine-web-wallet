@@ -1,0 +1,29 @@
+<div style="text-align: center;">
+    <div class="activation-form">
+        <mat-progress-bar *ngIf="!haveResponse" mode="query"></mat-progress-bar>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Ad<font style="color: yellow">Mine</font> activation account:
+                    <mat-error *ngIf="errorStr">failed</mat-error>
+                    <span *ngIf="successStr" style="color: #00ff00">success</span>
+                    <span *ngIf="!successStr && !errorStr">pending...</span>
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div *ngIf="errorStr">
+                    <p>{{errorStr}}</p>
+                    <p>If you think this is an error, please contact us: <a href="mailto:support@admine.io" style="color: #adb2f3">support@admine.io</a></p>
+                </div>
+                <div *ngIf="successStr">
+                    <p>Your account <font style="color: #00ff00">{{login}}</font> and email <font style="color: #00ff00">{{email}}</font> verification successfuly finished.</p>
+                    <p>Welcome to Ad<font style="color: yellow">Mine</font> panel, glad to meet you!</p>
+                    <div>
+                        <button mat-raised-button color="primary" [routerLink]="['/login']">Login to panel</button>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

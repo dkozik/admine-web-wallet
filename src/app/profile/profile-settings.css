@@ -1,0 +1,21 @@
+div.profile-form {
+    text-align: left;
+}
+
+div.profile-form table.form-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+div.profile-form td.caption {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+div.profile-form mat-form-field {
+    width: 100%;
+}
+
+div.profile-form mat-card-content {
+    display: inline-block !important;
+}

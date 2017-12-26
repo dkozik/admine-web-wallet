@@ -1,0 +1,55 @@
+confirm-form mat-table {
+    font-size: 12px;
+}
+
+mat-cell {
+    font-size: 12px;
+    text-align: left;
+}
+
+mat-header-cell {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+mat-header-cell.mat-column-checkbox {
+    padding: 0;
+    padding-top: 10px;
+}
+
+.mat-column-checkbox {
+    flex: 0 0 80px !important;
+    white-space: unset !important;
+    text-align: center;
+}
+
+.mat-column-date_create {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-amount {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-mcn_amount {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+
+.mat-column-dest_user_login {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-src_user_login {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}

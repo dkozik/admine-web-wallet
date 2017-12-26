@@ -1,0 +1,50 @@
+div.profile-smart-contract {
+    width: 500px;
+}
+
+div.profile-smart-contract td {
+    padding-left: 10px;
+    border-bottom: 1px solid #EEE;
+}
+
+div.profile-smart-contract td.hdr {
+    font-weight: bold;
+    padding-left: 0px;
+    border-bottom: none;
+}
+
+div.profile-smart-contract td.value-cell {
+    text-align: right;
+}
+
+.profile-smart-contract mat-card.currency-card {
+    width: 180px;
+    display: inline-block;
+    margin-right: 20px;
+    padding: 0;
+}
+
+.profile-smart-contract mat-card.currency-card mat-card-header {
+    text-align: center;
+    padding: 10px;
+}
+
+.profile-smart-contract mat-card.currency-card mat-card-header div {
+    display: inline-block;
+}
+
+.profile-smart-contract mat-card.currency-card mat-card-content {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.profile-smart-contract mat-card.currency-card mat-card-content div {
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.profile-smart-contract mat-card.currency-card mat-card-footer {
+    text-align: center;
+    padding: 4px;
+    margin: 0;
+}

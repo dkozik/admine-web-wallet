@@ -1,0 +1,49 @@
+/*div.profile-info {
+    width: 500px;
+}*/
+
+div.profile-info mat-card-content {
+    display: inline-block !important;
+}
+
+div.profile-info td {
+    padding-left: 10px;
+}
+
+div.profile-info td.hdr {
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+
+.profile-info mat-card.currency-card {
+    width: 180px;
+    display: inline-block;
+    margin-right: 20px;
+    padding: 0;
+}
+
+.profile-info mat-card.currency-card mat-card-header {
+    text-align: center;
+    padding: 10px;
+}
+
+.profile-info mat-card.currency-card mat-card-header div {
+    display: inline-block;
+}
+
+.profile-info mat-card.currency-card mat-card-content {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.profile-info mat-card.currency-card mat-card-content div {
+    margin-bottom: 4px;
+    margin-top: 4px;
+}
+
+.profile-info mat-card.currency-card mat-card-footer {
+    text-align: center;
+    padding: 4px;
+    margin: 0;
+}

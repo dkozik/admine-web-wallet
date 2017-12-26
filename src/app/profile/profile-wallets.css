@@ -1,0 +1,96 @@
+mat-row.wallet-row mat-cell {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+mat-row.wallet-row mat-cell div {
+    display: inline-block;
+}
+
+mat-row.wallet-history-row mat-cell {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+}
+
+mat-row.wallet-history-row mat-cell div {
+    display: inline-block;
+}
+
+span.wallet-addr {
+    font-size: 10px;
+    color: #F22;
+}
+
+div.wallet-mcn-amount {
+    right: 40px;
+    position: absolute;
+}
+
+div.wallet-history-amount {
+    right: 60px;
+    position: absolute;
+}
+
+div.wallets-tab td {
+    padding: 4px;
+}
+
+div.wallets-tab td.hdr-type {
+    width: 80px;
+}
+
+div.wallets-tab td.hdr-amount {
+    width: 80px;
+}
+
+div.wallets-tab td.hdr {
+    background-color: #673030;
+}
+
+div.wallets-tab td.cell-amount {
+    text-align: right;
+}
+
+div.wallets-action-bar {
+    padding-top: 10px;
+}
+
+div.history-table .mat-column-date {
+    flex: 0 0 200px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+div.history-table .mat-column-addr {
+    text-align: left;
+}
+
+div.history-table .mat-column-amount {
+    flex: 0 0 100px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+div.history-table .mat-column-currency_type {
+    flex: 0 0 80px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+div.wallets-table .mat-column-type {
+    flex: 0 0 80px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+div.wallets-table .mat-column-addr {
+    text-align: left;
+}
+
+div.wallets-table .mat-column-amount {
+    flex: 0 0 80px !important;
+    white-space: unset !important;
+    text-align: left;
+}

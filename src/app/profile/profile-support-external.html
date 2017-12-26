@@ -1,0 +1,73 @@
+<div class="profile-external">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                External users MCN tokens amount interface
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div style="text-align: left">
+                <mat-list role="list">
+                    <mat-list-item  role="listitem" *ngFor="let item of externalEthAddreses">
+                        <div>
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="doRemoveAddr(item)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            {{item.id}}
+                        </div>
+                    </mat-list-item>
+                </mat-list>
+                <!--<mat-selection-list #addresses>
+                    <mat-list-item *ngFor="let item of externalEthAddreses" [selected]="true" (select)="alert(1)">
+                        <div>
+                            <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="doRemoveAddr(item)">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            {{item.id}}
+                        </div>
+                    </mat-list-item>
+                </mat-selection-list>-->
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+
+            <div style="text-align: left; padding: 16px;">
+                <mat-form-field [style.width.px]="380">
+                    <input matInput [formControl]="walletControl" placeholder="Ethereum wallet address">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="doAddExternalEthAddress()" [disabled]="!walletControl.valid">Add receiver</button>
+                <mat-error *ngIf="errorString">{{errorString}}</mat-error>
+            </div>
+
+            <div style="text-align: left; padding-left: 16px;">
+                <form [formGroup]="formGroup" [style.fontSize.px]="14">
+                    <mat-form-field [style.width.px]="200">
+
+                        <mat-select placeholder="Tokens type" formControlName="tokenType" [(ngModel)]="selectedTokenType" required>
+                            <mat-option *ngFor="let type of tokenTypesList" [value]="type">
+                                {{type.descr}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('tokenType').hasError('required')">Select token type</mat-error>
+                        <mat-hint style="color: GREEN">{{selectedTokenType?selectedTokenType.mnemo:''}}</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field [style.width.px]="300" [style.marginLeft.px]="20">
+
+                        <input matInput required placeholder="Tokens transfer reason" formControlName="tokenDescr"/>
+                        <mat-error *ngIf="formGroup.get('tokenDescr').hasError('required')">Need to put tokens transfere reason</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field [style.width.px]="200" [style.marginLeft.px]="20">
+                        <input matInput required type="number" placeholder="AdMine (MCN) tokens amount" formControlName="amount"/>
+                        <mat-error *ngIf="formGroup.get('amount').hasError('required')">Enter valid MCN tokens amount</mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" [style.marginLeft.px]="20" [disabled]="!formGroup.valid || !externalEthAddreses.length" (click)="doSendTokens()">Send tokens</button>
+                </form>
+            </div>
+
+        </mat-card-footer>
+
+    </mat-card>
+</div>

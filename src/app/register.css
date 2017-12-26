@@ -1,0 +1,33 @@
+div.register-form {
+    border: 1px solid #AAA;
+    border-radius: 4px;
+    /*background-color: #223858;*/
+    display: inline-block;
+    padding: 10px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+div.register-form mat-card {
+    padding: 0;
+}
+
+div.register-form mat-card-header {
+    display: block;
+}
+
+.register-form .mat-card-content {
+    padding: 20px 20px 3px 20px !important;
+}
+
+.register-form .mat-card-actions {
+    padding: 3px 20px 10px !important;
+    margin: 0;
+}
+
+.register-form .mat-card-footer {
+    padding: 3px 20px !important;
+    margin: 0;
+}

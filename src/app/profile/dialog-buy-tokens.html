@@ -1,0 +1,33 @@
+<div [class]="isMobile?'mobile-dialog':'form-dialog'">
+    <h3>To purchase Media Coins, you need to make transfer on the wallet listed below:</h3><br>
+
+    <p *ngIf="ethAddress">
+        You can transfer <b>{{ethAmountValue}} ETH</b> to address
+        <span *ngIf="!isMobile">
+            <a href="https://etherscan.io/address/{{ethAddress}}" target="_blank">{{ethAddress}}</a>
+        </span>
+        <span *ngIf="isMobile" class="cryptoAddr" (click)="doCopyToClipboard(ethAddress)">
+            <p>{{ethAddress}}</p>
+        </span>
+        and you will receive <b>{{remindAmount}}</b> MCN tokens
+    </p>
+    <p *ngIf="btcAddress">
+        You can transfer <b>{{btcAmountValue}} BTC</b> to address
+        <span *ngIf="!isMobile">
+            <a href="https://blockchain.info/address/{{btcAddress}}" target="_blank">{{btcAddress}}</a>
+        </span>
+        <span *ngIf="isMobile" class="cryptoAddr" (click)="doCopyToClipboard(btcAddress)">
+            <p>{{btcAddress}}</p>
+        </span>
+        and you will receive <b>{{remindAmount}}</b> MCN tokens
+    </p>
+
+    <p>After purchase, Media Coins are automatically credited to your AdMine account.</p><br>
+
+    <p>You can transfer purchased Media Coins to any purse, manual:</p>
+    1. Click in menu - Wallet<br>
+    2. Click on button "Send token"<br>
+    3. Enter you wallet, amount and click send.<br>
+    <br>
+    <button mat-raised-button color="primary" (click)="doClose()">Ok</button>
+</div>

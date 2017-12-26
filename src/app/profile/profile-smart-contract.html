@@ -1,0 +1,50 @@
+<div class="profile-smart-contract">
+    <mat-card>
+        <mat-card-content style="text-align: left;">
+
+            <table style="border-collapse: collapse; width: 380px;">
+                <tr>
+                    <td colspan="2" class="hdr">Counters</td>
+                </tr>
+                <tr>
+                    <td>Pre Sale tokens balance</td>
+                    <td class="value-cell">{{preSaleSupply}}</td>
+                </tr>
+                <tr>
+                    <td>ICO tokens balance</td>
+                    <td class="value-cell">{{icoSupply}}</td>
+                </tr>
+                <tr>
+                    <td>Users grows pool tokens balance</td>
+                    <td class="value-cell">{{userGrowsPoolSupply}}</td>
+                </tr>
+                <tr>
+                    <td>Audit tokens balance</td>
+                    <td class="value-cell">{{auditSupply}}</td>
+                </tr>
+                <tr>
+                    <td>Advisor tokens balance</td>
+                    <td class="value-cell">{{admineAdvisorToken}}</td>
+                </tr>
+                <tr>
+                    <td>Bounty tokens balance</td>
+                    <td class="value-cell">{{bountySupply}}</td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<mat-card>
+    <mat-card-content>
+        <button mat-raised-button color="primary" (click)="doUpdateAdmineWalletsList()">Update admine wallets list</button>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-content>
+        <div style="height: 250px">
+            <dhtmlx-table [columnsInfo]="transferLogColumnsInfo" [restPoint]="'/stat/get_transaction_log'"></dhtmlx-table>
+        </div>
+    </mat-card-content>
+</mat-card>

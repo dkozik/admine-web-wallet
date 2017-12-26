@@ -1,0 +1,169 @@
+<div class="wallets-tab">
+    <mat-card>
+        <mat-card-content>
+
+            <div>All income payments from wallets below will be deteriminated as yours. All MediaCoins will be sent to your wallet.</div>
+
+            <div *ngIf="!mobileQuery.matches" class="wallets-table mat-elevation-z8" style="margin-top: 10px">
+
+                <mat-table [dataSource]="walletsDataSource" matSort>
+
+                    <ng-container matColumnDef="type">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.type}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="addr">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Wallet address </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{row.addr}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="amount">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+                        <mat-cell *matCellDef="let row"> {{amoutToStr(row.amount)}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="walletsDisplayColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: walletsDisplayColumns;">
+                    </mat-row>
+                </mat-table>
+
+            </div>
+
+            <div *ngIf="mobileQuery.matches" class="wallets-table mat-elevation-z8" style="margin-top: 10px">
+                <mat-table [dataSource]="walletsDataSource">
+                    <ng-container matColumnDef="wallet">
+                        <mat-header-cell *matHeaderCellDef> Your wallets list </mat-header-cell>
+                        <mat-cell *matCellDef="let row">
+                            <div class="wallet-type">{{amoutToStr(row.amount)}} {{row.type}}</div>
+                            <div class="wallet-mcn-amount">{{amoutToStr(row.mcn_amount)}} MCN</div><br>
+                            <span class="wallet-addr">{{row.addr}}</span>
+                        </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="walletsDisplayColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: walletsDisplayColumns;" class="wallet-row"></mat-row>
+                </mat-table>
+            </div>
+
+            <div>
+                <mat-toolbar>
+                    <mat-toolbar-row>
+                        <button mat-raised-button color="primary" (click)="doSendMyTokens()">Send my tokens</button>
+                    </mat-toolbar-row>
+                </mat-toolbar>
+            </div>
+
+        </mat-card-content>
+        <mat-card-actions *ngIf="walletTypes.length">
+            <mat-form-field>
+                <mat-select [(value)]="selectedWalletType">
+                    <mat-option *ngFor="let type of walletTypes" value="{{type}}">{{type}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="doAddNewWallet()" [disabled]="!selectedWalletType">Add new wallet</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-accordion *ngIf="false">
+        <mat-expansion-panel #panel [expanded]="personalWalletPanelOpened" (opened)="personalWalletPanelOpenedState = true"
+                             (closed)="personalWalletPanelOpenedState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal ETH wallet for MCN tokens
+                </mat-panel-title>
+                <mat-panel-description>
+                    <span *ngIf="!havePersonalETHWallet">
+                        <span *ngIf="!panel.expanded">You can define your personal Ethereum wallet for to accept your MCN tokens to</span>
+                        <span *ngIf="panel.expanded">Enter Ethereum wallet address</span>
+                    </span>
+                    <span *ngIf="havePersonalETHWallet">All MCN tokens will be sent to your personal ETH wallet below</span>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div *ngIf="havePersonalETHWallet">
+
+                <mat-form-field [style.width.px]="380">
+                    <input matInput type="text" placeholder="Ethereum wallet address" [(ngModel)]="parsonalWalletAddr" readonly/>
+                    <button mat-button *ngIf="parsonalWalletAddr" matSuffix mat-icon-button aria-label="Clear" (click)="doRemovePersonalWallet()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+
+
+            </div>
+            <div *ngIf="!havePersonalETHWallet">
+                <p>Please, make sure the address of the wallet is correct! If you'l type wrong address, your MCN tokens will be lost.</p>
+                <mat-form-field [style.width.px]="380" required>
+                    <input matInput [formControl]="walletControl" placeholder="Your ETH wallet address">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="doAddPersonalEthWallet()" [disabled]="!walletControl.valid">Save my ETH wallet</button>
+            </div>
+
+            <mat-error *ngIf="savePersonalWalletError">{{savePersonalWalletError}}</mat-error>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-expansion-panel #panel [expanded]="false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Wallet balance history
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngIf="!mobileQuery.matches" class="history-table mat-elevation-z8">
+
+            <mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="addr">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Wallet address </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.addr}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{amoutToStr(row.amount)}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="currency_type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Currency </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.currency}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[25, 100]"></mat-paginator>
+
+        </div>
+
+        <div *ngIf="mobileQuery.matches" class="wallets-table mat-elevation-z8" style="margin-top: 10px">
+
+            <mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="item">
+                    <mat-header-cell *matHeaderCellDef> History </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+
+                        <div class="wallet-type">{{row.date}}</div>
+                        <div class="wallet-history-amount">{{amoutToStr(row.amount)}} {{row.currency}}</div><br>
+                        <span class="wallet-addr">{{row.addr}}</span>
+
+
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" class="wallet-history-row">
+                </mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+        </div>
+
+    </mat-expansion-panel>
+
+</div>

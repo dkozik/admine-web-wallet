@@ -1,0 +1,44 @@
+mat-header-cell {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+mat-header-cell.mat-column-checkbox {
+    padding: 0;
+    padding-top: 10px;
+}
+
+.mat-column-checkbox {
+    flex: 0 0 80px !important;
+    white-space: unset !important;
+}
+
+.mat-column-id {
+    flex: 0 0 60px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-login {
+    flex: 0 0 140px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-email {
+/*    flex: 0 0 240px !important;*/
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-mcn_amount {
+    flex: 0 0 120px !important;
+    white-space: unset !important;
+    text-align: left;
+}
+
+.mat-column-role {
+    flex: 0 0 100px !important;
+    white-space: unset !important;
+    text-align: left;
+}

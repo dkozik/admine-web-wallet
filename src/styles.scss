@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-size: 12px;
+}
+
+app-root div.gridbox_material.gridbox table.obj tr td {
+    font-size: 12px;
+}
+
+@import './admine-theme';

@@ -1,0 +1,7 @@
+div.activation-form {
+    width: 400px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px;
+}

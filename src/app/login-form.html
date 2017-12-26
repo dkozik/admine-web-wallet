@@ -1,0 +1,44 @@
+<div style="text-align: center" [class]="mobileQuery.matches?'mobile':'full'">
+    <div class="login-form">
+            <mat-card>
+                <mat-card-header>
+                    <mat-toolbar color="primary">
+                        Login to Ad<font style="color: yellow">Mine</font>
+                    </mat-toolbar>
+
+<!--                    <mat-toolbar-row>
+                            <mat-card-title>Login to Ad<font style="color: yellow">Mine</font></mat-card-title>
+                            <mat-card-subtitle>Please enter your login and password to login into wallet</mat-card-subtitle>
+                    </mat-toolbar-row>-->
+
+                </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="formGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Login or email" formControlName="login" style="width: 100%;">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input type="password" matInput placeholder="Password" formControlName="password">
+                        </mat-form-field>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" style="width: 100%;" (click)="doLogin(user)">Login</button>
+                </mat-card-actions>
+                <mat-card-footer>
+                    <form [formGroup]="formGroup">
+                        <div style="padding-bottom: 20px; text-align: left;">
+                            <div style="display: inline-block;">
+                                <mat-checkbox formControlName="remember">Remember me</mat-checkbox>
+                            </div>
+                            <div style="display: inline-block; padding-left: 60px;">
+                                <a [routerLink]="['/restore-account']">Forgot Username/Password?</a>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-footer>
+            </mat-card>
+        <div class="next-links"><span>or</span> <a _ngcontent-c1="" [routerLink]="['/register']">Register now!</a></div>
+    </div>
+</div>

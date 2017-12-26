@@ -1,0 +1,7 @@
+div.register-complete-dialog {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: 80px;
+}

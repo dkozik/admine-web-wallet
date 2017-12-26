@@ -1,0 +1,11 @@
+div.profile-external {
+    font-size: 13px;
+}
+
+div.profile-external mat-card {
+    font-size: 13px;
+}
+
+div.profile-external mat-card-footer {
+    padding-bottom: 20px;
+}

@@ -1,0 +1,57 @@
+<div style="text-align: center;">
+    <div class="activation-form">
+        <mat-progress-bar *ngIf="onQuery" mode="query"></mat-progress-bar>
+        <mat-card>
+            <mat-toolbar color="primary">
+                Restore&nbsp;<font style="color: #FFF">Ad</font><font style="color: yellow">Mine</font>&nbsp;account
+            </mat-toolbar>
+
+            <mat-card-content>
+                <span *ngIf="!hashPresented && !restoreSuccess">
+                    Plaese, insert your email, we will send you a letter with instructions.
+                    <form [formGroup]="formGroup">
+                        <mat-form-field>
+                            <input required matInput placeholder="Your email there" formControlName="email" style="width: 100%;">
+                        </mat-form-field>
+                    </form>
+                </span>
+                <span *ngIf="restoreSuccess">
+                    Ok, we sent you email with instructions, please come back with your new url.
+                </span>
+                <span *ngIf="hashPresented">
+                    <span *ngIf="canChangePassword">
+                        Please, enter new password below
+                        <div style="margin-top: 15px;">
+                            <form [formGroup]="formGroupConfirm">
+                                <mat-form-field>
+                                    <input required matInput type="password" placeholder="Your new password" formControlName="newPassword" style="width: 100%;">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input required matInput type="password" placeholder="Password confirmation" formControlName="newPasswordConfirm" style="width: 100%;">
+                                </mat-form-field>
+                            </form>
+                        </div>
+                    </span>
+                </span>
+                <mat-error *ngIf="errorStr">{{errorStr}}</mat-error>
+            </mat-card-content>
+            <mat-card-actions>
+                <span *ngIf="!hashPresented">
+                    <button *ngIf="!restoreSuccess" mat-raised-button color="primary" style="width: 100%;" (click)="doRestore()" [disabled]="!formGroup.valid">Restore account</button>
+<!--                    <button *ngIf="restoreSuccess" mat-raised-button color="primary" style="width: 100%" [routerLink]="['/login']">Login</button>-->
+                </span>
+                <span *ngIf="canChangePassword">
+                    <button mat-raised-button color="primary" style="width: 100%;" (click)="doChangePass()" [disabled]="!formGroupConfirm.valid">Change password</button>
+                </span>
+                <span *ngIf="hashPresented && errorStr>'' && !canChangePassword">
+                    If you thing this is error, you can contact our support by <a href="mailto:support@admine.io">support@admine.io</a>
+                </span>
+            </mat-card-actions>
+            <mat-card-footer  _ngcontent-c1="">
+                <div _ngcontent-c1="" style="padding-bottom: 20px;">
+                    <a _ngcontent-c1="" [routerLink]="['/login']">← Come Back</a>
+                </div>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

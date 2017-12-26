@@ -1,0 +1,62 @@
+<div class="mat-elevation-z8 confirm-form">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="checkbox">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-slide-toggle (change)="doCheckAll()" [(ngModel)]="checkAllFlag"></mat-slide-toggle>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input (click)="doCheckRow(row)" type="checkbox" [(ngModel)]="row.checked"/>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="date_create">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.date_create}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="transfere_descr">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Descr </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.transfere_descr}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="reason">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Reason </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.reason}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ext_eth_address">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ETH address </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ext_eth_address}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> MCN amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="mcn_amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> MCN balance </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.mcn_amount}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="src_user_login">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Support </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.src_user_login}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <mat-toolbar [style.height.px]="100">
+        <mat-toolbar-row>
+            <button mat-raised-button color="primary" [disabled]="rowsChecked<=0" (click)="doConfirmTransactions()">Confirm</button>
+            <button mat-raised-button color="primary" [style.marginLeft.px]="20" [disabled]="rowsChecked<=0" (click)="doDeclineTtransactions()">Decline</button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

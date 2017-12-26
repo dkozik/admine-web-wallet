@@ -1,0 +1,13 @@
+div.form-dialog {
+    font-size: 16px;
+}
+
+div.mobile-dialog {
+    font-size: 12px;
+}
+
+div.mobile-dialog span.cryptoAddr {
+    font-size: 10px;
+    font-weight: bold;
+    color: #F22;
+}

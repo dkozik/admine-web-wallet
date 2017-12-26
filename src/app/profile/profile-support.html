@@ -1,0 +1,88 @@
+<div class="example-header">
+    <mat-form-field>
+        <input matInput size="120" (keyup)="applyFilter($event.target.value)" placeholder="Filter usres">
+    </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="checkbox">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-slide-toggle (change)="doCheckAll()" [(ngModel)]="checkAllFlag"></mat-slide-toggle>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <input (click)="doCheckRow(row)" type="checkbox" [(ngModel)]="row.checked"/>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="login">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.login}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.email}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="mcn_amount">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> MCN amount </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.mcn_amount}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="date_create">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Create date </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="getRowColor(row)"> {{row.date_create}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+            <mat-cell *matCellDef="let row" [style.color]="getRowColor(row)"> {{row.role}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    <mat-toolbar [style.height.px]="100">
+        <mat-toolbar-row>
+            <div style="padding: 8px; padding-top: 50px; height: 80px;">
+                <form [formGroup]="formGroup" [style.fontSize.px]="14">
+                    <mat-form-field [style.width.px]="200">
+
+                        <mat-select placeholder="Tokens type" formControlName="tokenType" [(ngModel)]="selectedTokenType" required>
+                            <mat-option *ngFor="let type of tokenTypesList" [value]="type">
+                                {{type.descr}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formGroup.get('tokenType').hasError('required')">Select token type</mat-error>
+                        <mat-hint style="color: GREEN">{{selectedTokenType?selectedTokenType.mnemo:''}}</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field [style.width.px]="300" [style.marginLeft.px]="20">
+
+                        <input matInput required placeholder="Tokens transfer reason" formControlName="tokenDescr"/>
+                        <mat-error *ngIf="formGroup.get('tokenDescr').hasError('required')">Need to put tokens transfere reason</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field [style.width.px]="200" [style.marginLeft.px]="20">
+                        <input matInput required type="number" placeholder="AdMine (MCN) tokens amount" formControlName="amount"/>
+                        <mat-error *ngIf="formGroup.get('amount').hasError('required')">Enter valid MCN tokens amount</mat-error>
+                    </mat-form-field>
+
+                    <button mat-raised-button color="primary" [style.marginLeft.px]="20" [disabled]="!formGroup.valid" (click)="doSendTokens()">Send tokens</button>
+                </form>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>

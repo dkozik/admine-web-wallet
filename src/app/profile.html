@@ -1,0 +1,71 @@
+<div *ngIf="loggedIn" class="profile-container" [class.example-is-mobile]="mobileQuery.matches">
+    <mat-toolbar color="primary" class="profile-toolbar">
+        <span *ngIf="mobileQuery.matches" class="mob-head header">
+            <div>
+                <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+            </div>
+            <div style="position: absolute; right: 20px">Your balance: {{mcnAmount}} MCN</div>
+        </span>
+        <span *ngIf="!mobileQuery.matches" class="header">
+            <div>
+                <a href="https://admine.io"><img src="https://admine.io/img/hlogo-black.png" style="width: 170px;"/></a>
+    <!--            <h1>User profile Ad<font style="color: yellow">Mine</font> panel</h1>-->
+            </div>
+            <div style="width: 100%; padding-right:200px;">18 December Pre-Sale ICO Starts</div>
+            <div style="position: absolute; right: 20px">Your balance: {{mcnAmount}} MCN</div>
+        </span>
+    </mat-toolbar>
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 60 : 60">
+        <mat-sidenav #snav
+                     [mode]="mobileQuery.matches ? 'over' : 'side'"
+                     [opened]="!this.mobileQuery.matches"
+                     [fixedInViewport]="true"
+                     [fixedTopGap]="mobileQuery.matches ? 50:65">
+            <mat-nav-list [style.width.px]="300">
+                <a mat-list-item [routerLink]="[{outlets: { content_page: 'info' } }]" (click)="hideNav()">Info</a>
+                <a mat-list-item [routerLink]="[{outlets: { content_page: 'wallet' }}]" (click)="hideNav()">Wallets</a>
+                <a mat-list-item [routerLink]="[{outlets: { content_page: 'settings' }}]" (click)="hideNav()">Profile settings</a>
+
+                <mat-expansion-panel *ngIf="accessLevel>0" [expanded]="false" style="box-shadow: inherit;">
+                    <mat-expansion-panel-header style="padding-left: 16px;">
+                        <mat-panel-title>
+                            AdMine support
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a *ngIf="accessLevel>0" mat-list-item [routerLink]="[{outlets: { content_page: 'support' }}]" (click)="hideNav()">AdMine users amount</a>
+                    <a *ngIf="accessLevel>0" mat-list-item [routerLink]="[{outlets: { content_page: 'support-external' }}]" (click)="hideNav()">External amount</a>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel *ngIf="accessLevel>1" [expanded]="false" style="box-shadow: inherit;">
+                    <mat-expansion-panel-header style="padding-left: 16px;">
+                        <mat-panel-title>
+                            Transaction confirmations
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a *ngIf="accessLevel>1" mat-list-item [routerLink]="[{outlets: { content_page: 'confirm' }}]" (click)="hideNav()">Internal MCN transactions</a>
+                    <a *ngIf="accessLevel>1" mat-list-item [routerLink]="[{outlets: { content_page: 'confirm-external' }}]" (click)="hideNav()">External MCN transactions</a>
+                </mat-expansion-panel>
+
+                <a *ngIf="accessLevel>0" mat-list-item [routerLink]="[{outlets: { content_page: 'wallets-management' }}]" (click)="hideNav()">User wallets management</a>
+                <a *ngIf="accessLevel>1" mat-list-item [routerLink]="[{outlets: { content_page: 'smart-contract' }}]" (click)="hideNav()">Smart contract</a>
+                <mat-expansion-panel *ngIf="accessLevel>0" [expanded]="false" style="box-shadow: inherit;">
+                    <mat-expansion-panel-header style="padding-left: 16px;">
+                        <mat-panel-title>
+                            Mail delivery
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a *ngIf="accessLevel>0" mat-list-item [routerLink]="[{outlets: { content_page: 'email-delivery' }}]" (click)="hideNav()">Sending</a>
+                    <a *ngIf="accessLevel>0" mat-list-item [routerLink]="[{outlets: { content_page: 'email-templates' }}]" (click)="hideNav()">Templates</a>
+                </mat-expansion-panel>
+
+                <a mat-list-item (click)="doLogout()">Logout</a>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div style="padding: 10px;">
+                <router-outlet name="content_page"></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

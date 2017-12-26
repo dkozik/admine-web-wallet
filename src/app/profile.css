@@ -1,0 +1,64 @@
+/*span.mob-head {
+    text-align: right;
+}*/
+/*span.mob-head div {
+    display: inline;
+}*/
+
+mat-toolbar.profile-toolbar div {
+    display: inline-block;
+}
+
+mat-toolbar.profile-toolbar span.header {
+    width: 100%;
+    text-align: left;
+}
+
+mat-toolbar.profile-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+div.profile-container {
+    text-align: center;
+}
+
+div.profile-form td.caption {
+    text-align: left;
+}
+
+div.profile-form input {
+    width: 100%;
+}
+
+div.profile-form mat-form-field {
+    width: 100%;
+}
+
+div.profile-card {
+    width: 580px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 10px;
+    margin-top: 4px;
+/*    margin-top: -20px;*/
+}
+
+
+
+/*
+mat-nav-list a {
+    padding-left: 20px;
+    padding-right: 20px;
+}*/
+
+a.mat-list-item:hover {
+    background-color: #AAA;
+}
+
+mat-toolbar.profile-toolbar mat-nav-list button {
+    width: 100%;
+}

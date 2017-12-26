@@ -1,0 +1,44 @@
+div.full div.login-form {
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-block;
+}
+
+div.mobile div.login-form {
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-block;
+}
+
+div.login-form mat-form-field {
+    width: 100%;
+}
+
+div.login-form a {
+    color: #0029ff;
+}
+
+div.login-form mat-card {
+    padding: 0;
+}
+
+div.login-form mat-card-header {
+    display: block;
+}
+
+.login-form .mat-card-content {
+    padding: 20px 20px 3px 20px !important;
+}
+
+.login-form .mat-card-actions {
+    padding: 3px 20px !important;
+    margin: 0;
+}
+
+.login-form .mat-card-footer {
+    padding: 3px 20px !important;
+    margin: 0;
+}
+

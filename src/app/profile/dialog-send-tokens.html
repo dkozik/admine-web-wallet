@@ -1,0 +1,47 @@
+<div class="dialog-send-tokens">
+    <mat-card [class]="mobileQuery.matches?'mobile':'full'">
+        <mat-card-content>
+            <table style="table-layout: fixed; width: 100%">
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field [style.width]="mobileQuery.matches?'100%':'440px'" required>
+                            <mat-select placeholder="Select wallet" [(ngModel)]="data.wallet_from" required>
+                                <mat-option *ngFor="let wallet of data.wallets"
+                                            [value]="wallet.addr">
+                                    <span *ngIf="!mobileQuery.matches">
+                                        {{wallet.addr}} [{{wallet.amount}} MCN]
+                                    </span>
+                                    <span *ngIf="mobileQuery.matches">
+                                        [{{wallet.amount}} MCN] {{wallet.addr}}
+                                    </span>
+
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <mat-form-field [style.width]="mobileQuery.matches?'100%':'440px'" required>
+                            <input matInput placeholder="ETH wallet address" [formControl]="ethAddr" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td [colSpan]="mobileQuery.matches?'2':'1'" style="width: 300px; text-align: left;">
+                        <mat-form-field [style.width]="mobileQuery.matches?'auto':'200px'">
+                            <input matInput required type="number" [formControl]="amount" placeholder="AdMine (MCN) tokens amount"/>
+                        </mat-form-field>
+                    </td>
+                    <td *ngIf="!mobileQuery.matches" style="text-align: right;">
+                        <button mat-raised-button color="primary" [disabled]="!ethAddr.valid || !amount.valid || !data.wallet_from" (click)="doSendTokens()">Send</button>
+                    </td>
+                </tr>
+                <tr *ngIf="mobileQuery.matches">
+                    <td><button mat-raised-button color="primary" [disabled]="!ethAddr.valid || !amount.valid || !data.wallet_from" (click)="doSendTokens()">Send</button></td>
+                    <td><button mat-button color="primary" (click)="onNoClick()">Cancel</button></td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>

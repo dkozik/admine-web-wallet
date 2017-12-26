@@ -1,0 +1,32 @@
+div.activation-form {
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    padding: 10px;
+    display: inline-block;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+div.activation-form mat-card {
+    padding: 0;
+}
+
+div.activation-form mat-card-header {
+    display: block;
+}
+
+.activation-form .mat-card-content {
+    padding: 20px 20px 3px 20px !important;
+}
+
+.activation-form .mat-card-actions {
+    padding: 3px 20px 10px !important;
+    margin: 0;
+}
+
+.activation-form .mat-card-footer {
+    padding: 3px 20px !important;
+    margin: 0;
+}

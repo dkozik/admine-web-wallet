@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-content>
+
+        <mat-error *ngIf="errorStr">{{errorStr}}</mat-error>
+        <mat-form-field [style.width.px]="400">
+            <input matInput
+                   placeholder="Wallet id"
+
+                    [(ngModel)]="walletAddr">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="doCollectEther()">Collect ether on wallet</button>
+
+    </mat-card-content>
+</mat-card>

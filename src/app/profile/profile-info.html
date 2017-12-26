@@ -1,0 +1,105 @@
+<div class="profile-info" style="vertical-align: top;">
+    <mat-card style="display: inline-block; vertical-align: top; margin-bottom: 20px;" [style.marginRight.px]="mobileQuery.matches?0:20">
+        <mat-card-content style="text-align: left;">
+            <!--[style.minWidth]="mobileQuery.matches?100%:350px"-->
+            <table style="table-layout: fixed" [style.width]="mobileQuery.matches?'100%':'auto'" [style.minWidth]="mobileQuery.matches?'100%':'350px'">
+                <tr>
+                    <td colspan="2" class="hdr">Members</td>
+                </tr>
+                <tr>
+                    <td style="width: 150px; text-align: left;">Whitelist</td>
+                    <td>{{usersCount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Balance</td>
+                </tr>
+                <tr>
+                    <td>Your balance</td>
+                    <td>{{userBalance}} MCN</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Pre-Sale ICO</td>
+                </tr>
+                <tr>
+                    <td>Pre-Sale ICO</td>
+                    <td>5 000 000 MCN</td>
+                </tr>
+                <tr>
+                    <td>MCN Sell</td>
+                    <td>{{mcnSell}} MCN</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Collected funds</td>
+                </tr>
+                <tr>
+                    <td>ETH</td>
+                    <td>{{ethCollected}} / ${{ethUsdCollected}}</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>{{btcCollected}} / ${{btcUsdCollected}}</td>
+                </tr>
+                <tr>
+                    <td>$ Funds collected</td>
+                    <td>${{totalUsdCollected}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Exchange rates</td>
+                </tr>
+                <tr>
+                    <td>ETH</td>
+                    <td>${{ethUsdCurrency}}</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>${{btcUsdCurrency}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Exchange rates Media Coin</td>
+                </tr>
+                <tr>
+                    <td>Token Price MCN</td>
+                    <td>${{tokenPrice}}</td>
+                </tr>
+                <tr>
+                    <td>ETH</td>
+                    <td>{{ethMcnCurrency}} MCN</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td>{{btcMcnCurrency}} MCN</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="hdr">Bonuses</td>
+                </tr>
+                <tr>
+                    <td>1 day</td>
+                    <td>50% bonus tokens</td>
+                </tr>
+                <tr>
+                    <td>2-3 day</td>
+                    <td>30% bonus tokens</td>
+                </tr>
+                <tr>
+                    <td>From the 4th day</td>
+                    <td>25% bonus tokens</td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+    <mat-card style="display: inline-block; vertical-align: top">
+        <mat-card-content style="text-align: left;">
+            <h3>Buy MCN tokens now</h3>
+            <p>Current token price <b>${{mcnTokenPrice}}</b></p>
+            <mat-form-field [style.width.px]="200">
+                <input required matInput type="number" placeholder="MCN amount" [formControl]="amount" style="width: 100%;">
+                <mat-error *ngIf="amount.valid">Enter valid MCN tokens amount</mat-error>
+            </mat-form-field>
+
+            <div>
+                <button mat-raised-button color="primary" [disabled]="!amount.valid" (click)="doShowHowToBuy()">Buy MCN tokens</button>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>
